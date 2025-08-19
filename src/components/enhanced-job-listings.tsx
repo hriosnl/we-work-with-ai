@@ -50,6 +50,7 @@ const sampleJobs: Job[] = [
     description: 'Research and develop safe, beneficial AI systems.',
     requirements: ['PhD in CS/ML', 'Publication record', 'Safety focus'],
     benefits: ['Research budget', 'Conference travel', 'Flexible hours'],
+    url: 'https://careers.anthropic.com',
     featured: true,
   },
   {
@@ -64,6 +65,7 @@ const sampleJobs: Job[] = [
     description: 'Develop autonomous driving perception systems.',
     requirements: ['Computer vision expertise', 'Real-time systems', '3+ years exp'],
     benefits: ['Stock options', 'Health/dental', 'Gym membership'],
+    url: 'https://www.tesla.com/careers',
   },
   {
     id: '4',
@@ -77,6 +79,7 @@ const sampleJobs: Job[] = [
     description: 'Build and improve state-of-the-art NLP models.',
     requirements: ['NLP experience', 'Transformer models', 'Open source'],
     benefits: ['Remote first', 'Learning budget', 'Open source time'],
+    url: 'https://huggingface.co/jobs',
   },
   {
     id: '5',
@@ -90,6 +93,7 @@ const sampleJobs: Job[] = [
     description: 'Lead product strategy for AI-powered data platforms.',
     requirements: ['Product management', 'AI/ML knowledge', 'B2B experience'],
     benefits: ['Equity package', 'Health benefits', 'Growth opportunities'],
+    url: 'https://scale.com/careers',
   },
   {
     id: '6',
@@ -103,6 +107,7 @@ const sampleJobs: Job[] = [
     description: 'Scale ML infrastructure and deployment pipelines.',
     requirements: ['DevOps experience', 'ML systems', 'Cloud platforms'],
     benefits: ['Remote work', 'Tech stipend', 'Professional development'],
+    url: 'https://cohere.com/careers',
   },
   {
     id: '7',
@@ -116,6 +121,7 @@ const sampleJobs: Job[] = [
     description: 'Design and optimize prompts for large language models.',
     requirements: ['LLM experience', 'Creative writing', 'AI safety awareness'],
     benefits: ['Flexible hours', 'Learning stipend', 'Remote workspace budget'],
+    url: 'https://stability.ai/careers',
   },
   {
     id: '8',
@@ -129,6 +135,7 @@ const sampleJobs: Job[] = [
     description: 'Develop AI systems for advanced robotics applications.',
     requirements: ['Robotics background', 'Control theory', 'Real-time systems'],
     benefits: ['Hardware access', 'Research time', 'Publication support'],
+    url: 'https://www.bostondynamics.com/careers',
   },
 ]
 
@@ -154,6 +161,12 @@ function ExternalLinkIcon() {
 function EnhancedJobCard({ job, index }: { job: Job; index: number }) {
   const [isHovered, setIsHovered] = useState(false)
 
+  const handleClick = () => {
+    if (job.url) {
+      window.open(job.url, '_blank', 'noopener,noreferrer')
+    }
+  }
+
   return (
     <div 
       className={`group relative p-6 bg-card border border-border/30 rounded-lg transition-all duration-300 hover:border-border hover:shadow-lg hover:shadow-primary/5 cursor-pointer ${
@@ -165,6 +178,15 @@ function EnhancedJobCard({ job, index }: { job: Job; index: number }) {
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={handleClick}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          handleClick()
+        }
+      }}
     >
       {job.featured && (
         <div className="absolute -top-2 -right-2">
