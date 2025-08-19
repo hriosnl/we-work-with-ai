@@ -5,6 +5,7 @@ import { AiParserSwitch } from "@/components/ui/ai-parser-switch";
 import { JobPostModal } from "@/components/job-post-modal";
 import { EnhancedJobListings } from "@/components/enhanced-job-listings";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { ContainerTextFlip } from "@/components/container-text-flip";
 
 export default function HomePage() {
   const [isAiMode, setIsAiMode] = useState(false);
@@ -45,12 +46,18 @@ export default function HomePage() {
               <h2 className="text-4xl md:text-5xl font-medium leading-tight">
                 Remote AI Jobs
                 <br />
-                <span className="text-primary">for Everyone</span>
+                <div className="mt-2">
+                  <span className="text-primary mr-2">for</span>
+                  <ContainerTextFlip
+                    className="md:pt-0 md:pb-5 font-medium shadow-none dark:shadow-none"
+                    textClassName="md:text-[2.8rem]"
+                  />
+                </div>
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Curated opportunities at leading AI companies.
                 <br />
-                100% remote. Updated daily.
+                100% remote. Updated regularly.
               </p>
             </div>
 
@@ -77,7 +84,7 @@ export default function HomePage() {
       </main>
 
       {/* Minimal Footer */}
-      <footer className="container mx-auto px-6 py-12 border-t border-border/20">
+      <footer className="relative container mx-auto px-6 py-12 border-t border-border/20">
         <div className="text-sm text-muted-foreground">
           <p>Built for the AI community. Open to feedback and contributions.</p>
         </div>
