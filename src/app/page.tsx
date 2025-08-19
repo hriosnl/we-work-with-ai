@@ -1,14 +1,14 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { AiParserSwitch } from '@/components/ui/ai-parser-switch'
-import { JobPostModal } from '@/components/job-post-modal'
-import { EnhancedJobListings } from '@/components/enhanced-job-listings'
-import { ThemeToggle } from '@/components/theme-toggle'
+import { useState } from "react";
+import { AiParserSwitch } from "@/components/ui/ai-parser-switch";
+import { JobPostModal } from "@/components/job-post-modal";
+import { EnhancedJobListings } from "@/components/enhanced-job-listings";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function HomePage() {
-  const [isAiMode, setIsAiMode] = useState(false)
-  const [isJobPostModalOpen, setIsJobPostModalOpen] = useState(false)
+  const [isAiMode, setIsAiMode] = useState(false);
+  const [isJobPostModalOpen, setIsJobPostModalOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-background text-foreground font-mono">
@@ -18,20 +18,19 @@ export default function HomePage() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-              <h1 className="text-lg font-medium tracking-tight">AI Remote Jobs</h1>
+              <h1 className="text-lg font-medium tracking-tight">
+                We Work With AI
+              </h1>
             </div>
-            
+
             <div className="flex items-center space-x-6">
-              <button 
+              <button
                 onClick={() => setIsJobPostModalOpen(true)}
                 className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 hover:underline underline-offset-4"
               >
                 Submit Job
               </button>
-              <AiParserSwitch 
-                isAiMode={isAiMode}
-                onToggle={setIsAiMode}
-              />
+              <AiParserSwitch isAiMode={isAiMode} onToggle={setIsAiMode} />
               <ThemeToggle />
             </div>
           </div>
@@ -46,19 +45,21 @@ export default function HomePage() {
               <h2 className="text-4xl md:text-5xl font-medium leading-tight">
                 Remote AI Jobs
                 <br />
-                <span className="text-primary">for Developers</span>
+                <span className="text-primary">for Everyone</span>
               </h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                Curated opportunities at leading AI companies. 
+                Curated opportunities at leading AI companies.
                 <br />
                 100% remote. Updated daily.
               </p>
             </div>
-            
+
             <div className="flex items-center space-x-4 text-sm">
               <div className="flex items-center space-x-2">
                 <div className="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
-                <span className="text-muted-foreground">8 new jobs this week</span>
+                <span className="text-muted-foreground">
+                  8 new jobs this week
+                </span>
               </div>
               <div className="w-px h-4 bg-border"></div>
               <div className="flex items-center space-x-2">
@@ -88,5 +89,5 @@ export default function HomePage() {
         onOpenChange={setIsJobPostModalOpen}
       />
     </div>
-  )
+  );
 }
