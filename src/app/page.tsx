@@ -27,7 +27,7 @@ export default function HomePage() {
             <div className="flex items-center space-x-6">
               <button
                 onClick={() => setIsJobPostModalOpen(true)}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 hover:underline underline-offset-4"
+                className="px-4 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-lg hover:bg-primary/90 transition-all duration-200 hover:scale-105 hover:shadow-lg hover:shadow-primary/25"
               >
                 Submit Job
               </button>
