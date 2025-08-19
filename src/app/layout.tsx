@@ -5,18 +5,22 @@ import { ThemeProvider } from "@/components/theme-provider";
 export const metadata: Metadata = {
   title: "We Work With AI - Curated Remote AI Jobs",
   description:
-    "Discover the latest remote AI and machine learning opportunities. Connect with top companies hiring for artificial intelligence roles worldwide.",
+    "Premium remote AI and machine learning jobs from top companies. Featured listings, $175 job posts, 10k+ monthly pageviews. Updated daily.",
   keywords: [
+    "remote AI jobs",
+    "machine learning jobs", 
+    "artificial intelligence careers",
     "remote work",
-    "AI jobs",
-    "machine learning",
-    "artificial intelligence",
-    "remote careers",
+    "AI engineer",
+    "ML engineer",
+    "prompt engineer",
+    "AI researcher",
     "tech jobs",
+    "remote developer",
   ],
-  authors: [{ name: "AI Remote Work" }],
-  creator: "AI Remote Work",
-  publisher: "AI Remote Work",
+  authors: [{ name: "We Work With AI" }],
+  creator: "We Work With AI",
+  publisher: "We Work With AI",
   robots: {
     index: true,
     follow: true,
@@ -31,29 +35,29 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://airemotework.com",
-    title: "AI Remote Work - Premium Remote AI Jobs",
+    url: "https://weworkwith-ai.com",
+    title: "We Work With AI - Curated Remote AI Jobs",
     description:
-      "Discover the latest remote AI and machine learning opportunities. Connect with top companies hiring for artificial intelligence roles worldwide.",
-    siteName: "AI Remote Work",
+      "Premium remote AI and machine learning jobs from top companies. Featured listings, updated daily, 100+ companies.",
+    siteName: "We Work With AI",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "AI Remote Work - Premium Remote AI Jobs",
+        alt: "We Work With AI - Curated Remote AI Jobs",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Remote Work - Premium Remote AI Jobs",
+    title: "We Work With AI - Curated Remote AI Jobs",
     description:
-      "Discover the latest remote AI and machine learning opportunities.",
-    images: ["/og-image.jpg"],
+      "Premium remote AI and ML jobs from leading companies. Updated daily.",
+    images: ["/og-image.png"],
   },
   alternates: {
-    canonical: "https://airemotework.com",
+    canonical: "https://weworkwith-ai.com",
   },
 };
 
