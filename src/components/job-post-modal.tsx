@@ -1,58 +1,59 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { 
-  Modal, 
-  ModalContent, 
-  ModalHeader, 
-  ModalFooter, 
-  ModalTitle, 
-  ModalDescription 
-} from '@/components/ui/modal'
-import { Button } from '@/components/ui/button'
+import { useState } from "react";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalTitle,
+  ModalDescription,
+} from "@/components/ui/modal";
+import { Button } from "@/components/ui/button";
+import { Loader } from "@/components/loader";
 
 interface JobPostModalProps {
-  open: boolean
-  onOpenChange: (open: boolean) => void
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
 }
 
 export function JobPostModal({ open, onOpenChange }: JobPostModalProps) {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    jobPostUrl: ''
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
+    name: "",
+    email: "",
+    jobPostUrl: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (field: string, value: string) => {
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [field]: value
-    }))
-  }
+      [field]: value,
+    }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    
+    e.preventDefault();
+    setIsSubmitting(true);
+
     // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
     // Reset form and close modal
-    setFormData({ name: '', email: '', jobPostUrl: '' })
-    setIsSubmitting(false)
-    onOpenChange(false)
-  }
+    setFormData({ name: "", email: "", jobPostUrl: "" });
+    setIsSubmitting(false);
+    onOpenChange(false);
+  };
 
   const featuredCompanies = [
-    { name: 'OpenAI', color: '#10b981' },
-    { name: 'Anthropic', color: '#f59e0b' },
-    { name: 'DeepMind', color: '#3b82f6' },
-    { name: 'Hugging Face', color: '#f97316' },
-    { name: 'Scale AI', color: '#8b5cf6' },
-    { name: 'Cohere', color: '#06b6d4' },
-    { name: 'Stability AI', color: '#ec4899' },
-  ]
+    { name: "OpenAI", color: "#10b981" },
+    { name: "Anthropic", color: "#f59e0b" },
+    { name: "DeepMind", color: "#3b82f6" },
+    { name: "Hugging Face", color: "#f97316" },
+    { name: "Scale AI", color: "#8b5cf6" },
+    { name: "Cohere", color: "#06b6d4" },
+    { name: "Stability AI", color: "#ec4899" },
+  ];
 
   return (
     <Modal open={open} onOpenChange={onOpenChange}>
@@ -60,7 +61,8 @@ export function JobPostModal({ open, onOpenChange }: JobPostModalProps) {
         <ModalHeader>
           <ModalTitle className="text-center">Submit an AI job post</ModalTitle>
           <ModalDescription className="text-center">
-            Add your information below, and we&apos;ll email you for details and $175 Stripe invoice
+            Add your information below, and we&apos;ll email you for details and
+            $175 Stripe invoice
           </ModalDescription>
         </ModalHeader>
 
@@ -78,7 +80,10 @@ export function JobPostModal({ open, onOpenChange }: JobPostModalProps) {
               </li>
               <li className="flex items-center space-x-2">
                 <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-                <span>Metrics: 10k monthly pageviews, 100+ clicks per post, 75% open rate newsletter</span>
+                <span>
+                  Metrics: 10k monthly pageviews, 100+ clicks per post, 75% open
+                  rate newsletter
+                </span>
               </li>
             </ul>
 
@@ -89,29 +94,31 @@ export function JobPostModal({ open, onOpenChange }: JobPostModalProps) {
                   type="text"
                   placeholder="Name"
                   value={formData.name}
-                  onChange={(e) => handleInputChange('name', e.target.value)}
+                  onChange={(e) => handleInputChange("name", e.target.value)}
                   className="w-full px-3 py-2 bg-background border border-input rounded-md text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   required
                 />
               </div>
-              
+
               <div>
                 <input
                   type="email"
                   placeholder="Email"
                   value={formData.email}
-                  onChange={(e) => handleInputChange('email', e.target.value)}
+                  onChange={(e) => handleInputChange("email", e.target.value)}
                   className="w-full px-3 py-2 bg-background border border-input rounded-md text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   required
                 />
               </div>
-              
+
               <div>
                 <input
                   type="url"
                   placeholder="Link to job post"
                   value={formData.jobPostUrl}
-                  onChange={(e) => handleInputChange('jobPostUrl', e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("jobPostUrl", e.target.value)
+                  }
                   className="w-full px-3 py-2 bg-background border border-input rounded-md text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   required
                 />
@@ -119,7 +126,7 @@ export function JobPostModal({ open, onOpenChange }: JobPostModalProps) {
             </div>
           </div>
 
-          <ModalFooter className="gap-2">
+          <ModalFooter>
             <Button
               type="button"
               variant="ghost"
@@ -129,14 +136,16 @@ export function JobPostModal({ open, onOpenChange }: JobPostModalProps) {
               Cancel
             </Button>
             <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? 'Submitting...' : 'Submit'}
+              {isSubmitting ? <Loader /> : "Submit"}
             </Button>
           </ModalFooter>
         </form>
 
         {/* Previously Featured Companies */}
-        <div className="pt-4 border-t border-border">
-          <p className="text-xs text-muted-foreground text-center mb-3">Previously featured</p>
+        <div className="mt-4 pt-4 border-t border-border">
+          <p className="text-xs text-muted-foreground text-center mb-3">
+            Previously featured
+          </p>
           <div className="flex flex-wrap justify-center gap-3">
             {featuredCompanies.map((company, index) => (
               <div
@@ -151,5 +160,5 @@ export function JobPostModal({ open, onOpenChange }: JobPostModalProps) {
         </div>
       </ModalContent>
     </Modal>
-  )
+  );
 }
