@@ -15,9 +15,10 @@ import { Loader } from "@/components/loader";
 interface JobPostModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  onSuccess?: () => void;
 }
 
-export function JobPostModal({ open, onOpenChange }: JobPostModalProps) {
+export function JobPostModal({ open, onOpenChange, onSuccess }: JobPostModalProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -50,13 +51,11 @@ export function JobPostModal({ open, onOpenChange }: JobPostModalProps) {
       const result = await response.json();
 
       if (response.ok) {
-        setSubmitMessage('✓ Job submission received! We\'ll email you with the invoice and next steps.');
-        // Reset form after success
-        setTimeout(() => {
-          setFormData({ name: "", email: "", jobPostUrl: "" });
-          setSubmitMessage('');
-          onOpenChange(false);
-        }, 3000);
+        // Reset form immediately
+        setFormData({ name: "", email: "", jobPostUrl: "" });
+        setSubmitMessage('');
+        // Call success callback to show notification and close modal
+        onSuccess?.();
       } else {
         setSubmitMessage(`Error: ${result.error || 'Failed to submit job posting'}`);
       }

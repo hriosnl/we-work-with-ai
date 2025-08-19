@@ -6,15 +6,29 @@ import { JobPostModal } from "@/components/job-post-modal";
 import { EnhancedJobListings } from "@/components/enhanced-job-listings";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { ContainerTextFlip } from "@/components/container-text-flip";
+import { Notification } from "@/components/ui/notification";
 
 export default function HomePage() {
   const [isAiMode, setIsAiMode] = useState(false);
   const [isJobPostModalOpen, setIsJobPostModalOpen] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
+
+  const handleJobSubmissionSuccess = () => {
+    setIsJobPostModalOpen(false);
+    setShowNotification(true);
+  };
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-mono">
+    <div className="relative min-h-screen bg-background text-foreground font-mono">
+      {/* Success Notification */}
+      <Notification
+        show={showNotification}
+        onClose={() => setShowNotification(false)}
+      >
+        Job posted successfully! <br /> We will review and publish it soon.
+      </Notification>
       {/* Enhanced Header */}
-      <header className="border-b border-border/20 bg-background/95 backdrop-blur-sm sticky top-0 z-50">
+      <header className="border-b border-border/20 bg-background/95 backdrop-blur-sm sticky top-0 z-40">
         <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2 min-w-0 flex-1">
@@ -103,6 +117,7 @@ export default function HomePage() {
       <JobPostModal
         open={isJobPostModalOpen}
         onOpenChange={setIsJobPostModalOpen}
+        onSuccess={handleJobSubmissionSuccess}
       />
     </div>
   );
