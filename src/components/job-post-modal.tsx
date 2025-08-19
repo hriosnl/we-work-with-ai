@@ -24,6 +24,7 @@ export function JobPostModal({ open, onOpenChange }: JobPostModalProps) {
     jobPostUrl: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({
@@ -35,14 +36,36 @@ export function JobPostModal({ open, onOpenChange }: JobPostModalProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitMessage('');
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    try {
+      const response = await fetch('/api/submit-job', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-    // Reset form and close modal
-    setFormData({ name: "", email: "", jobPostUrl: "" });
-    setIsSubmitting(false);
-    onOpenChange(false);
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitMessage('✓ Job submission received! We\'ll email you with the invoice and next steps.');
+        // Reset form after success
+        setTimeout(() => {
+          setFormData({ name: "", email: "", jobPostUrl: "" });
+          setSubmitMessage('');
+          onOpenChange(false);
+        }, 3000);
+      } else {
+        setSubmitMessage(`Error: ${result.error || 'Failed to submit job posting'}`);
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      setSubmitMessage('Error: Failed to submit. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const featuredCompanies = [
@@ -124,6 +147,17 @@ export function JobPostModal({ open, onOpenChange }: JobPostModalProps) {
                 />
               </div>
             </div>
+
+            {/* Submit Message */}
+            {submitMessage && (
+              <div className={`p-3 rounded-md text-sm ${
+                submitMessage.startsWith('✓') 
+                  ? 'bg-green-50 text-green-800 border border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800' 
+                  : 'bg-red-50 text-red-800 border border-red-200 dark:bg-red-900/20 dark:text-red-300 dark:border-red-800'
+              }`}>
+                {submitMessage}
+              </div>
+            )}
           </div>
 
           <ModalFooter>
