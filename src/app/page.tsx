@@ -11,7 +11,7 @@ import { Notification } from "@/components/ui/notification";
 export default function HomePage() {
   const [isAiMode, setIsAiMode] = useState(false);
   const [isJobPostModalOpen, setIsJobPostModalOpen] = useState(false);
-  const [showNotification, setShowNotification] = useState(true);
+  const [showNotification, setShowNotification] = useState(false);
 
   const handleJobSubmissionSuccess = () => {
     setIsJobPostModalOpen(false);
