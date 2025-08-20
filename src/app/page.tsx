@@ -4,8 +4,8 @@ import { useState } from "react";
 import { AiParserSwitch } from "@/components/ui/ai-parser-switch";
 import { JobPostModal } from "@/components/job-post-modal";
 import { JobListings } from "@/components/job-listings";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { ContainerTextFlip } from "@/components/container-text-flip";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { ContainerTextFlip } from "@/components/ui/container-text-flip";
 import { Notification } from "@/components/ui/notification";
 
 export default function HomePage() {
@@ -80,7 +80,7 @@ export default function HomePage() {
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Curated opportunities at leading AI companies.
                 <br />
-                100% remote. Updated regularly.
+                100% remote. Updated weekly.
               </p>
             </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useTheme } from "./theme-provider";
+import { useTheme } from "../theme-provider";
 import { Button } from "@/components/ui/button";
 
 export function ThemeToggle() {

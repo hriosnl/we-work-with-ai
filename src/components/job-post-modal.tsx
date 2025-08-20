@@ -10,7 +10,7 @@ import {
   ModalDescription,
 } from "@/components/ui/modal";
 import { Button } from "@/components/ui/button";
-import { Loader } from "@/components/loader";
+import { Loader } from "@/components/ui/loader";
 
 interface JobPostModalProps {
   open: boolean;
@@ -18,14 +18,18 @@ interface JobPostModalProps {
   onSuccess?: () => void;
 }
 
-export function JobPostModal({ open, onOpenChange, onSuccess }: JobPostModalProps) {
+export function JobPostModal({
+  open,
+  onOpenChange,
+  onSuccess,
+}: JobPostModalProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     jobPostUrl: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState('');
+  const [submitMessage, setSubmitMessage] = useState("");
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({
@@ -37,13 +41,13 @@ export function JobPostModal({ open, onOpenChange, onSuccess }: JobPostModalProp
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitMessage('');
+    setSubmitMessage("");
 
     try {
-      const response = await fetch('/api/submit-job', {
-        method: 'POST',
+      const response = await fetch("/api/submit-job", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
@@ -53,15 +57,17 @@ export function JobPostModal({ open, onOpenChange, onSuccess }: JobPostModalProp
       if (response.ok) {
         // Reset form immediately
         setFormData({ name: "", email: "", jobPostUrl: "" });
-        setSubmitMessage('');
+        setSubmitMessage("");
         // Call success callback to show notification and close modal
         onSuccess?.();
       } else {
-        setSubmitMessage(`Error: ${result.error || 'Failed to submit job posting'}`);
+        setSubmitMessage(
+          `Error: ${result.error || "Failed to submit job posting"}`
+        );
       }
     } catch (error) {
-      console.error('Submission error:', error);
-      setSubmitMessage('Error: Failed to submit. Please try again.');
+      console.error("Submission error:", error);
+      setSubmitMessage("Error: Failed to submit. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -149,11 +155,13 @@ export function JobPostModal({ open, onOpenChange, onSuccess }: JobPostModalProp
 
             {/* Submit Message */}
             {submitMessage && (
-              <div className={`p-3 rounded-md text-sm ${
-                submitMessage.startsWith('✓') 
-                  ? 'bg-green-50 text-green-800 border border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800' 
-                  : 'bg-red-50 text-red-800 border border-red-200 dark:bg-red-900/20 dark:text-red-300 dark:border-red-800'
-              }`}>
+              <div
+                className={`p-3 rounded-md text-sm ${
+                  submitMessage.startsWith("✓")
+                    ? "bg-green-50 text-green-800 border border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800"
+                    : "bg-red-50 text-red-800 border border-red-200 dark:bg-red-900/20 dark:text-red-300 dark:border-red-800"
+                }`}
+              >
                 {submitMessage}
               </div>
             )}
