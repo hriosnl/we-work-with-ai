@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { AiParserSwitch } from "@/components/ui/ai-parser-switch";
 import { JobPostModal } from "@/components/job-post-modal";
-import { EnhancedJobListings } from "@/components/enhanced-job-listings";
+import { JobListings } from "@/components/job-listings";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { ContainerTextFlip } from "@/components/container-text-flip";
 import { Notification } from "@/components/ui/notification";
@@ -11,7 +11,7 @@ import { Notification } from "@/components/ui/notification";
 export default function HomePage() {
   const [isAiMode, setIsAiMode] = useState(false);
   const [isJobPostModalOpen, setIsJobPostModalOpen] = useState(false);
-  const [showNotification, setShowNotification] = useState(false);
+  const [showNotification, setShowNotification] = useState(true);
 
   const handleJobSubmissionSuccess = () => {
     setIsJobPostModalOpen(false);
@@ -103,7 +103,7 @@ export default function HomePage() {
 
       {/* Main Content */}
       <main className="container mx-auto px-6 py-12">
-        <EnhancedJobListings isAiMode={isAiMode} />
+        <JobListings isAiMode={isAiMode} />
       </main>
 
       {/* Minimal Footer */}

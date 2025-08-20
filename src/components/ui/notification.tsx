@@ -31,7 +31,7 @@ export const Notification: React.FC<NotificationProps> = ({
   return (
     <div
       className={cn(
-        "fixed top-5 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-md mx-auto px-4",
+        "fixed top-5 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-full sm:max-w-md mx-auto px-4",
         className
       )}
     >
